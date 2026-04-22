@@ -1,0 +1,458 @@
+/* --- Base Styles & Variables --- */
+:root {
+    --primary-color: #d35400; /* Burnt Orange */
+    --primary-hover: #b94800;
+    --bg-light: #fbf9f6; /* Warm off-white */
+    --text-dark: #333333;
+    --dark-bg: #000000; /* Solid black to match the JPG background perfectly */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* --- Navigation Bar --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px;
+    background-color: var(--dark-bg);
+/*    position: sticky;*/
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.logo-container {
+    height: 70px;
+}
+
+.nav-logo {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+/* --- Hero Section --- */
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+    height: 85vh;
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
+}
+
+.hero-content {
+    color: #ffffff;
+    max-width: 600px;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    font-style: italic;
+    color: #e0e0e0;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    padding: 15px 35px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: var(--primary-hover);
+}
+
+/* --- Hero Social Links --- */
+.hero-social {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.social-text {
+    font-size: 1.1rem !important;
+    font-style: italic;
+    color: #e0e0e0 !important;
+    margin-bottom: 0 !important;
+}
+
+.hero-social-links {
+    display: flex;
+    gap: 20px;
+}
+
+.hero-social-icon {
+    color: #ffffff;
+    font-size: 2rem;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.hero-social-icon:hover {
+    color: var(--primary-color);
+    transform: translateY(-5px);
+}
+
+/* --- About Section --- */
+.about-section {
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.about-content p {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+/* --- Services / Grid Section --- */
+.services-section {
+    padding: 80px 10%;
+    background-color: #f0ece1; 
+    text-align: center;
+}
+
+.services-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 25px;
+    text-align: left;
+}
+
+.card-content h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+
+/* --- Package List Styling --- */
+.package-list {
+    margin-top: 15px;
+    padding: 0;
+}
+
+.package-list p {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+/* --- Photo Gallery --- */
+.gallery-section {
+    padding: 80px 10%;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+.gallery-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.gallery-img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.gallery-img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 2;
+}
+
+/* --- Floating WhatsApp Button --- */
+.floating-wa {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25D366; 
+    color: #ffffff;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.floating-wa:hover {
+    background-color: #128C7E;
+    transform: scale(1.1);
+    color: #ffffff;
+}
+
+/* --- Footer Section --- */
+.footer {
+    background-color: var(--dark-bg);
+    color: #ffffff;
+    padding: 60px 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.footer-contact h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.footer-contact p {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.footer-logo-container {
+    max-width: 250px;
+}
+
+.footer-logo {
+    width: 100%;
+    height: auto;
+}
+
+/* --- Animation Rules --- */
+.fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Mobile Responsiveness (All Mobile Rules Here) --- */
+@media (max-width: 768px) {
+    /* Stack the navigation bar neatly */
+    .navbar {
+        flex-direction: column;
+        padding: 15px 20px;
+        text-align: center;
+    }
+    
+    .logo-container {
+        margin-bottom: 15px;
+        height: 60px; 
+    }
+    
+    .nav-links {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        padding: 0;
+    }
+
+    /* Shrink the Hero text and adjust padding */
+    .hero {
+        padding: 0 5%;
+        text-align: center;
+        height: auto;
+        min-height: 80vh; 
+        justify-content: center;
+    }
+
+    .hero-content {
+        margin-top: 20px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.2rem; 
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+
+    /* Center the hero social links on mobile */
+    .hero-social {
+        align-items: center;
+        margin-top: 30px;
+    }
+    
+    .hero-social-links {
+        justify-content: center;
+    }
+
+    /* Reduce massive white space between sections */
+    .about-section, 
+    .services-section {
+        padding: 50px 20px; 
+    }
+
+    /* Force the grid into a single column for phones */
+    .service-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    /* Stack the footer elements */
+    .footer {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 20px;
+        gap: 30px;
+    }
+
+    .footer-logo-container {
+        max-width: 200px;
+        margin: 0 auto;
+    }
+
+    /* Shrink floating button slightly on mobile */
+    .floating-wa {
+        width: 50px;
+        height: 50px;
+        font-size: 28px;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+/* --- Photo Slideshow --- */
+.gallery-section {
+    padding: 80px 10%;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+.gallery-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+}
+
+.slideshow-container {
+    max-width: 900px;
+    height: 500px; /* Nice big viewing window */
+    margin: 0 auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    background-color: #000; /* Black background while images load/fade */
+}
+
+#slide-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out; /* Creates the smooth fade effect */
+}
+
+/* This class gets added and removed by JS to trigger the fade */
+#slide-image.fade-in-slide {
+    opacity: 1;
+}
+
+/* Mobile Tweak for Slideshow Height */
+@media (max-width: 768px) {
+    .slideshow-container {
+        height: 300px; 
+    }
+}
