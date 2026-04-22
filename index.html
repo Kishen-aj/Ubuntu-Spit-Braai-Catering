@@ -11,27 +11,25 @@
 
     <nav class="navbar">
         <div class="logo-container">
-            <img src="Ubuntu Logo.svg" alt="Ubuntu Spitbraai Logo" class="nav-logo">
+            <img src="Ubuntu Logo.png" alt="Ubuntu Spitbraai Logo" class="nav-logo">
         </div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About Us</a></li>
-            <li><a href="#gallery">Gallery</a></li>
             <li><a href="#packages">Packages</a></li>
-<!--            <li><a href="#contact">Contact Us</a></li>-->
+            <li><a href="#contact">Contact Us</a></li>
         </ul>
     </nav>
 
     <header id="home" class="hero">
         <div class="hero-content">
-            
             <h1>Ubuntu <br>Spitbraai & Catering</h1>
-            <p style="font-family: inherit">Slow Cooked. Soul Filled.</p>
+            <p>Slow Cooked. Soul Filled.</p>
             
             <a href="https://wa.me/27815782025?text=Hello,%20I%20am%20reaching%20out%20from%20your%20website%20to%20inquire%20about%20your%20catering%20packages%20and%20availability." class="btn">Chat about a Booking on Whatsapp</a>
             
             <div class="hero-social">
-                <p class="social-text">Visit our Social Media Pages</p>
+                <p class="social-text">Visit our Social Media Pages ↓</p>
                 <div class="hero-social-links">
                     <a href="https://www.instagram.com/ubuntuspitbraaicatering25?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="hero-social-icon" aria-label="Instagram">
                         <i class="fab fa-instagram"></i>
@@ -44,7 +42,6 @@
                     </a>
                 </div>
             </div>
-            
         </div>
     </header>
 
@@ -60,6 +57,9 @@
         <h2>A Taste of What We Do</h2>
         <div class="slideshow-container fade-in">
             <img id="slide-image" src="" alt="Gallery Slide">
+            
+            <button class="slide-btn prev-btn" onclick="manualSlide(-1)">&#10094;</button>
+            <button class="slide-btn next-btn" onclick="manualSlide(1)">&#10095;</button>
         </div>
     </section>
     
@@ -112,7 +112,7 @@
         </div>
     </section>
 
-    <a href="https://wa.me/27815782025?text=Good%20day!%20I%20visited%20your%20website%20and%20would%20like%20to%20request%20a%20quote%20for%20an%20upcoming%20event." class="floating-wa" target="_blank" aria-label="Chat on WhatsApp">
+    <a href="https://wa.me/27815782025?text=Hello,%20I%20am%20reaching%20out%20from%20your%20website%20to%20inquire%20about%20your%20catering%20packages%20and%20availability." class="floating-wa" target="_blank" aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
     
@@ -124,11 +124,12 @@
             <p>📍 Cape Town & Surrounds</p>
         </div>
         <div class="footer-logo-container">
-            <img src="Ubuntu Logo.svg" alt="Ubuntu Logo" class="footer-logo">
+            <img src="Ubuntu Logo.png" alt="Ubuntu Logo" class="footer-logo">
         </div>
     </footer>
     
     <script>
+        // --- 1. Smooth Scroll Animations ---
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
@@ -139,6 +140,49 @@
 
         const hiddenElements = document.querySelectorAll('.fade-in');
         hiddenElements.forEach((el) => observer.observe(el));
+
+        // --- 2. Slideshow Logic ---
+        const totalPhotos = 4; // Change this number when you add more photos!
+        const imageFiles = [];
+        
+        for (let i = 1; i <= totalPhotos; i++) {
+            imageFiles.push(`Gallery Images/${i}.jpg`);
+        }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        let shuffledImages = shuffleArray([...imageFiles]);
+        let currentIndex = 0;
+        const slideElement = document.getElementById('slide-image');
+
+        function changeSlide() {
+            slideElement.classList.remove('fade-in-slide');
+            
+            setTimeout(() => {
+                slideElement.src = shuffledImages[currentIndex];
+                slideElement.classList.add('fade-in-slide');
+                
+                currentIndex++;
+                
+                if (currentIndex >= shuffledImages.length) {
+                    currentIndex = 0;
+                    shuffledImages = shuffleArray([...imageFiles]);
+                }
+            }, 1000); 
+        }
+
+        if (slideElement && imageFiles.length > 0) {
+            slideElement.src = shuffledImages[0];
+            slideElement.classList.add('fade-in-slide');
+            currentIndex++;
+            setInterval(changeSlide, 4000); 
+        }
     </script>
     
 </body>
