@@ -16,8 +16,8 @@
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About Us</a></li>
+            <li><a href="#gallery">Gallery</a></li>
             <li><a href="#packages">Packages</a></li>
-            <li><a href="#contact">Contact Us</a></li>
         </ul>
     </nav>
 
@@ -160,28 +160,39 @@
         let shuffledImages = shuffleArray([...imageFiles]);
         let currentIndex = 0;
         const slideElement = document.getElementById('slide-image');
+        let autoPlayInterval; 
 
-        function changeSlide() {
+        function changeSlide(direction) {
             slideElement.classList.remove('fade-in-slide');
             
             setTimeout(() => {
-                slideElement.src = shuffledImages[currentIndex];
-                slideElement.classList.add('fade-in-slide');
-                
-                currentIndex++;
+                currentIndex += direction;
                 
                 if (currentIndex >= shuffledImages.length) {
                     currentIndex = 0;
-                    shuffledImages = shuffleArray([...imageFiles]);
+                } else if (currentIndex < 0) {
+                    currentIndex = shuffledImages.length - 1;
                 }
-            }, 1000); 
+
+                slideElement.src = shuffledImages[currentIndex];
+                slideElement.classList.add('fade-in-slide');
+            }, 400); 
+        }
+
+        function autoSlide() {
+            changeSlide(1);
+        }
+
+        function manualSlide(direction) {
+            clearInterval(autoPlayInterval); 
+            changeSlide(direction); 
+            autoPlayInterval = setInterval(autoSlide, 4000); 
         }
 
         if (slideElement && imageFiles.length > 0) {
             slideElement.src = shuffledImages[0];
             slideElement.classList.add('fade-in-slide');
-            currentIndex++;
-            setInterval(changeSlide, 4000); 
+            autoPlayInterval = setInterval(autoSlide, 4000); 
         }
     </script>
     
