@@ -211,56 +211,71 @@
         const hiddenElements = document.querySelectorAll('.fade-in');
         hiddenElements.forEach((el) => observer.observe(el));
 
-        // --- 2. Slideshow Logic (CMS Connected) ---
+        // --- 2. Slideshow Logic (Bulletproof Version) ---
         fetch('gallery.json')
-            .then(response => {
-                if (!response.ok) throw new Error("JSON not found");
-                return response.json();
-            })
+            .then(response => response.json())
             .then(data => {
                 const imageFiles = data.photos || [];
-                
-                if (imageFiles.length === 0) return; 
+                if (imageFiles.length === 0) return;
 
-                function shuffleArray(array) {
-                    for (let i = array.length - 1; i > 0; i--) {
-                        const j = Math.floor(Math.random() * (i + 1));
-                        [array[i], array[j]] = [array[j], array[i]];
-                    }
-                    return array;
+                // Shuffle the images so they are random
+                let shuffledImages = imageFiles.sort(() => Math.random() - 0.5);
+                let currentIndex = 0;
+                let autoPlayInterval;
+                
+                const slideElement = document.getElementById('slide-image');
+                const prevBtn = document.querySelector('.prev-btn');
+                const nextBtn = document.querySelector('.next-btn');
+
+                // Preloads the next image in the background for zero lag
+                function preloadNextImage() {
+                    let nextIndex = (currentIndex + 1) % shuffledImages.length;
+                    const img = new Image();
+                    img.src = shuffledImages[nextIndex];
                 }
 
-                let shuffledImages = shuffleArray([...imageFiles]);
-                let currentIndex = 0;
-                const slideElement = document.getElementById('slide-image');
-                let autoPlayInterval;
-
-                window.manualSlide = function(direction) {
-                    clearInterval(autoPlayInterval);
-                    changeSlide(direction);
-                    autoPlayInterval = setInterval(autoSlide, 4000);
-                };
-
                 function changeSlide(direction) {
-                    if (!slideElement) return;
                     slideElement.classList.remove('fade-in-slide');
+                    
                     setTimeout(() => {
                         currentIndex += direction;
+                        
+                        // Loop around safely
                         if (currentIndex >= shuffledImages.length) currentIndex = 0;
-                        else if (currentIndex < 0) currentIndex = shuffledImages.length - 1;
+                        if (currentIndex < 0) currentIndex = shuffledImages.length - 1;
 
                         slideElement.src = shuffledImages[currentIndex];
                         slideElement.classList.add('fade-in-slide');
-                    }, 400);
+                        preloadNextImage();
+                    }, 400); 
                 }
 
-                function autoSlide() { changeSlide(1); }
-
-                if (slideElement) {
-                    slideElement.src = shuffledImages[0];
-                    slideElement.classList.add('fade-in-slide');
-                    autoPlayInterval = setInterval(autoSlide, 4000);
+                function autoSlide() { 
+                    changeSlide(1); 
                 }
+
+                // Safely attach the buttons directly in JS
+                if (prevBtn) {
+                    prevBtn.onclick = function() {
+                        clearInterval(autoPlayInterval);
+                        changeSlide(-1);
+                        autoPlayInterval = setInterval(autoSlide, 4000);
+                    };
+                }
+
+                if (nextBtn) {
+                    nextBtn.onclick = function() {
+                        clearInterval(autoPlayInterval);
+                        changeSlide(1);
+                        autoPlayInterval = setInterval(autoSlide, 4000);
+                    };
+                }
+
+                // Start the gallery
+                slideElement.src = shuffledImages[0];
+                slideElement.classList.add('fade-in-slide');
+                preloadNextImage(); 
+                autoPlayInterval = setInterval(autoSlide, 4000);
             })
             .catch(error => console.error("Error loading gallery:", error));
 
