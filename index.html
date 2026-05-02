@@ -19,6 +19,7 @@
             <li><a href="#about">About Us</a></li>
             <li><a href="#gallery">Gallery</a></li>
             <li><a href="#packages">Packages</a></li>
+            <li><a href="admin/index.html">Admin</a></li>
         </ul>
     </nav>
 
@@ -27,7 +28,7 @@
             <h1>Ubuntu <br>Spitbraai & Catering</h1>
             <p>Slow Cooked. Soul Filled.</p>
             
-            <a href="https://wa.me/27815782025?text=Hello,%20I%20am%20reaching%20out%20from%20your%20website%20to%20inquire%20about%20your%20catering%20packages%20and%20availability." class="btn">Chat about a Booking on Whatsapp</a>
+            <a href="https://wa.me/0660841242?text=Hello,%20I%20am%20reaching%20out%20from%20your%20website%20to%20inquire%20about%20your%20catering%20packages%20and%20availability." class="btn">Chat about a Booking on Whatsapp</a>
             
             <div class="hero-social">
                 <p class="social-text">Visit our Social Media Pages ↓</p>
@@ -120,7 +121,7 @@
     <footer id="contact" class="footer">
         <div class="footer-contact">
             <h3>Contact Us</h3>
-            <p>📞 081 578 2025</p>
+            <p>📞 066 084 1242</p>
             <p>✉️ Ubuntuspitbraai@gmail.com</p>
             <p>📍 Cape Town & Surrounds</p>
         </div>
@@ -197,13 +198,28 @@
         }
     </script> -->
     <script>
+        // --- 1. Smooth Scroll Animations ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        });
+
+        const hiddenElements = document.querySelectorAll('.fade-in');
+        hiddenElements.forEach((el) => observer.observe(el));
+
         // --- 2. Slideshow Logic (CMS Connected) ---
         fetch('gallery.json')
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) throw new Error("JSON not found");
+                return response.json();
+            })
             .then(data => {
                 const imageFiles = data.photos || [];
                 
-                if (imageFiles.length === 0) return; // Stop if no photos exist
+                if (imageFiles.length === 0) return; 
 
                 function shuffleArray(array) {
                     for (let i = array.length - 1; i > 0; i--) {
@@ -218,7 +234,6 @@
                 const slideElement = document.getElementById('slide-image');
                 let autoPlayInterval;
 
-                // Make the changeSlide function globally accessible for the buttons
                 window.manualSlide = function(direction) {
                     clearInterval(autoPlayInterval);
                     changeSlide(direction);
@@ -226,6 +241,7 @@
                 };
 
                 function changeSlide(direction) {
+                    if (!slideElement) return;
                     slideElement.classList.remove('fade-in-slide');
                     setTimeout(() => {
                         currentIndex += direction;
@@ -239,11 +255,24 @@
 
                 function autoSlide() { changeSlide(1); }
 
-                slideElement.src = shuffledImages[0];
-                slideElement.classList.add('fade-in-slide');
-                autoPlayInterval = setInterval(autoSlide, 4000);
+                if (slideElement) {
+                    slideElement.src = shuffledImages[0];
+                    slideElement.classList.add('fade-in-slide');
+                    autoPlayInterval = setInterval(autoSlide, 4000);
+                }
             })
             .catch(error => console.error("Error loading gallery:", error));
+
+        // --- 3. CMS Login Redirect ---
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", user => {
+                if (!user) {
+                    window.netlifyIdentity.on("login", () => {
+                        document.location.href = "/admin/";
+                    });
+                }
+            });
+        }
     </script>
     
 </body>
