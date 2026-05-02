@@ -29,18 +29,18 @@
             <h1>Ubuntu <br>Spitbraai & Catering</h1>
             <p>Slow Cooked. Soul Filled.</p>
             
-            <a href="https://wa.me/27660841242?text=Hello,%20I%20am%20reaching%20out%20from%20your%20website%20to%20inquire%20about%20your%20catering%20packages%20and%20availability." class="btn">Chat about a Booking on Whatsapp</a>
-            
+            <a id="hero-wa-btn" href="#" class="btn">Chat about a Booking on Whatsapp</a>
+
             <div class="hero-social">
                 <p class="social-text">Visit our Social Media Pages ↓</p>
                 <div class="hero-social-links">
-                    <a href="https://www.instagram.com/ubuntuspitbraaicatering25?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="hero-social-icon" aria-label="Instagram">
+                    <a id="hero-ig-link" href="#" target="_blank" class="hero-social-icon" aria-label="Instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="https://www.facebook.com/profile.php?id=61575089585966" target="_blank" class="hero-social-icon" aria-label="Facebook">
+                    <a id="hero-fb-link" href="#" target="_blank" class="hero-social-icon" aria-label="Facebook">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a href="https://www.tiktok.com/@ubuntuspitbraai?is_from_webapp=1&sender_device=pc" target="_blank" class="hero-social-icon" aria-label="TikTok">
+                    <a id="hero-tk-link" href="#" target="_blank" class="hero-social-icon" aria-label="TikTok">
                         <i class="fab fa-tiktok"></i>
                     </a>
                 </div>
@@ -115,7 +115,7 @@
         </div>
     </section>
 
-    <a href="https://wa.me/27660841242?text=Hello,%20I%20am%20reaching%20out%20from%20your%20website%20to%20inquire%20about%20your%20catering%20packages%20and%20availability." class="floating-wa" target="_blank" aria-label="Chat on WhatsApp">
+    <a id="floating-wa-btn" href="#" class="floating-wa" target="_blank" aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
     
@@ -289,6 +289,24 @@
                 }
             });
         }
+
+        // --- 4. Dynamic Links Logic ---
+        fetch('links.json')
+            .then(response => response.json())
+            .then(data => {
+                // The pre-written message for WhatsApp
+                const waMessage = "?text=Hello,%20I%20am%20reaching%20out%20from%20your%20website%20to%20inquire%20about%20your%20catering%20packages%20and%20availability.";
+                const waFullLink = "https://wa.me/" + data.whatsapp + waMessage;
+
+                // Inject the links into the HTML elements we tagged with IDs
+                if(document.getElementById('hero-wa-btn')) document.getElementById('hero-wa-btn').href = waFullLink;
+                if(document.getElementById('floating-wa-btn')) document.getElementById('floating-wa-btn').href = waFullLink;
+                if(document.getElementById('hero-ig-link')) document.getElementById('hero-ig-link').href = data.instagram;
+                if(document.getElementById('hero-fb-link')) document.getElementById('hero-fb-link').href = data.facebook;
+                if(document.getElementById('hero-tk-link')) document.getElementById('hero-tk-link').href = data.tiktok;
+            })
+            .catch(error => console.error("Error loading links:", error));
+            
     </script>
     
 </body>
