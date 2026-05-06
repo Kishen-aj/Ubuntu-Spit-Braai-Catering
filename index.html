@@ -13,13 +13,14 @@
 
     <nav class="navbar">
         <div class="logo-container">
-            <img src="Ubuntu Logo.png" alt="Ubuntu Spitbraai Logo" class="nav-logo">
+            <img src="Ubuntu Logo.jpg" alt="Ubuntu Spitbraai Logo" class="nav-logo">
         </div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About Us</a></li>
             <li><a href="#gallery">Gallery</a></li>
             <li><a href="#packages">Packages</a></li>
+            <li><a href="#other-services">Other Services</a></li>
             <li><a href="admin/index.html">Admin</a></li>
         </ul>
     </nav>
@@ -82,6 +83,7 @@
                         <p>✔️ Garlic & Herb Roasted Baby Potatoes</p>
                         <p>✔️ Choice of 1 Salad: Baked Bean, Curried Baked Beans, OR Green Salad</p>
                     </ul>
+                    <a id="hero-wa-btn-p1" href="#" class="btn" target="_blank">Enquire Package 1</a>
                 </div>
             </div>
 
@@ -96,6 +98,7 @@
                         <p>✔️ Garlic & Herb Roasted Baby Potatoes</p>
                         <p>✔️ Choice of 1 Salad: Baked Bean, Curried Baked Beans, OR Green Salad</p>
                     </ul>
+                    <a id="hero-wa-btn-p2" href="#" class="btn" target="_blank">Enquire Package 2</a>
                 </div>
             </div>
 
@@ -110,6 +113,65 @@
                         <p>✔️ Garlic & Herb Roasted Baby Potatoes</p>
                         <p>✔️ Choice of 1 Salad: Baked Bean, Curried Baked Beans, OR Green Salad</p>
                     </ul>
+                    <a id="hero-wa-btn-p3" href="#" class="btn" target="_blank">Enquire Package 3</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="other-services" class="services-section">
+        <h2>Other Services We Offer</h2>
+        <div class="service-grid">
+            
+            <div class="service-card fade-in">
+                <img src="gas-burner-image.jpg" alt="4 Plate Gas Burner" class="card-img">
+                <div class="card-content">
+                    <h3>🔥 4 Plate Gas Burner</h3>
+                    <ul class="package-list">
+                        <li>✔️ Heavy Duty</li>
+                        <li>✔️ Reliable, Powerful, and Easy To Use</li>
+                    </ul>
+                    <a id="wa-btn-gas-burner" href="#" class="btn" target="_blank">Enquire 4 Plate Gas Burner</a>
+                </div>
+            </div>
+
+            <div class="service-card fade-in">
+                <img src="spit-machine-1.jpg" alt="Charcoal Spit Braai Package 1" class="card-img">
+                <div class="card-content">
+                    <h3>⚙️ Charcoal Spit Braai Machine Hire (Package 1)</h3>
+                    <ul class="package-list">
+                        <li><strong>Hiring Fee:</strong> R ---</li>
+                        <li><strong>Deposit:</strong> R ---</li>
+                        <li><strong>Total:</strong> R ---</li>
+                    </ul>
+                    <p style="font-size: 0.8rem; margin-bottom: 15px; color: #666;">*Terms and conditions apply.</p>
+                    <a id="wa-btn-spit-p1" href="#" class="btn" target="_blank">Enquire Machine Package 1</a>
+                </div>
+            </div>
+
+            <div class="service-card fade-in">
+                <img src="spit-machine-2.jpg" alt="Charcoal Spit Braai Package 2" class="card-img">
+                <div class="card-content">
+                    <h3>⚙️ Charcoal Spit Braai Machine Hire (Package 2)</h3>
+                    <p style="font-weight: bold; margin-bottom: 10px;">Delivery - Cape Town 25 km radius</p>
+                    <ul class="package-list">
+                        <li><strong>Hiring Fee:</strong> R ---</li>
+                        <li><strong>Deposit:</strong> R ---</li>
+                        <li><strong>Total:</strong> R ---</li>
+                    </ul>
+                    <p style="font-size: 0.8rem; margin-bottom: 15px; color: #666;">*Terms and conditions apply.</p>
+                    <a id="wa-btn-spit-p2" href="#" class="btn" target="_blank">Enquire Machine Package 2</a>
+                </div>
+            </div>
+
+            <div class="service-card fade-in">
+                <img src="catering-image.jpg" alt="Catering Services" class="card-img">
+                <div class="card-content">
+                    <h3>🍽️ Catering Services</h3>
+                    <p>We also offer comprehensive catering services for any off-site booking at an extra cost.</p>
+                    <br>
+                    <a id="wa-btn-catering" href="#" class="btn" target="_blank">Enquire Catering Services</a>
                 </div>
             </div>
 
@@ -128,77 +190,10 @@
             <p>📍 Cape Town & Surrounds</p>
         </div>
         <div class="footer-logo-container">
-            <img src="Ubuntu Logo.png" alt="Ubuntu Logo" class="footer-logo">
+            <img src="Ubuntu Logo.jpg" alt="Ubuntu Logo" class="footer-logo">
         </div>
     </footer>
     
-    <!-- <script>
-        // --- 1. Smooth Scroll Animations ---
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        });
-
-        const hiddenElements = document.querySelectorAll('.fade-in');
-        hiddenElements.forEach((el) => observer.observe(el));
-
-        // --- 2. Slideshow Logic ---
-        const totalPhotos = 4; // Change this number when you add more photos!
-        const imageFiles = [];
-        
-        for (let i = 1; i <= totalPhotos; i++) {
-            imageFiles.push(`Gallery Images/${i}.jpg`);
-        }
-
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
-        }
-
-        let shuffledImages = shuffleArray([...imageFiles]);
-        let currentIndex = 0;
-        const slideElement = document.getElementById('slide-image');
-        let autoPlayInterval; 
-
-        function changeSlide(direction) {
-            slideElement.classList.remove('fade-in-slide');
-            
-            setTimeout(() => {
-                currentIndex += direction;
-                
-                if (currentIndex >= shuffledImages.length) {
-                    currentIndex = 0;
-                } else if (currentIndex < 0) {
-                    currentIndex = shuffledImages.length - 1;
-                }
-
-                slideElement.src = shuffledImages[currentIndex];
-                slideElement.classList.add('fade-in-slide');
-            }, 400); 
-        }
-
-        function autoSlide() {
-            changeSlide(1);
-        }
-
-        function manualSlide(direction) {
-            clearInterval(autoPlayInterval); 
-            changeSlide(direction); 
-            autoPlayInterval = setInterval(autoSlide, 4000); 
-        }
-
-        if (slideElement && imageFiles.length > 0) {
-            slideElement.src = shuffledImages[0];
-            slideElement.classList.add('fade-in-slide');
-            autoPlayInterval = setInterval(autoSlide, 4000); 
-        }
-    </script> -->
     <script>
         // --- 1. Smooth Scroll Animations ---
         const observer = new IntersectionObserver((entries) => {
@@ -291,22 +286,79 @@
             });
         }
 
-        // --- 4. Dynamic Links Logic ---
+        // --- 4. Dynamic Links & Secure Package Routing ---
         fetch('links.json')
             .then(response => response.json())
             .then(data => {
-                // The pre-written message for WhatsApp
+                // --- 4a. Standard Buttons ---
                 const waMessage = "?text=Hello,%20I%20am%20reaching%20out%20from%20your%20website%20to%20inquire%20about%20your%20catering%20packages%20and%20availability.";
                 const waFullLink = "https://wa.me/" + data.whatsapp + waMessage;
 
-                // Inject the links into the HTML elements we tagged with IDs
                 if(document.getElementById('hero-wa-btn')) document.getElementById('hero-wa-btn').href = waFullLink;
                 if(document.getElementById('floating-wa-btn')) document.getElementById('floating-wa-btn').href = waFullLink;
                 if(document.getElementById('hero-ig-link')) document.getElementById('hero-ig-link').href = data.instagram;
                 if(document.getElementById('hero-fb-link')) document.getElementById('hero-fb-link').href = data.facebook;
                 if(document.getElementById('hero-tk-link')) document.getElementById('hero-tk-link').href = data.tiktok;
+
+                // --- 4b. Secure Package Routing (Using CMS Number) ---
+                function routeToWhatsApp(event, packageName, paxCount) {
+                    event.preventDefault(); 
+                    const rawMessage = `Hi, I'm enquiring about ${packageName} (${paxCount} PAX) from your website.`;
+                    const encodedMessage = encodeURIComponent(rawMessage);
+                    window.open(`https://wa.me/${data.whatsapp}?text=${encodedMessage}`, '_blank');
+                }
+                
+                if(document.getElementById('hero-wa-btn-p1')) {
+                    document.getElementById('hero-wa-btn-p1').addEventListener('click', function(e) {
+                        routeToWhatsApp(e, 'Package 1', '20');
+                    });
+                }
+                
+                if(document.getElementById('hero-wa-btn-p2')) {
+                    document.getElementById('hero-wa-btn-p2').addEventListener('click', function(e) {
+                        routeToWhatsApp(e, 'Package 2', '30');
+                    });
+                }
+                
+                if(document.getElementById('hero-wa-btn-p3')) {
+                    document.getElementById('hero-wa-btn-p3').addEventListener('click', function(e) {
+                        routeToWhatsApp(e, 'Package 3', '40');
+                    });
+                }
             })
             .catch(error => console.error("Error loading links:", error));
+
+            // --- 4c. Secure General Services Routing ---
+                function routeServiceToWhatsApp(event, serviceName) {
+                    event.preventDefault(); 
+                    const rawMessage = `Hi, I'm enquiring about the ${serviceName} from your website.`;
+                    const encodedMessage = encodeURIComponent(rawMessage);
+                    window.open(`https://wa.me/${data.whatsapp}?text=${encodedMessage}`, '_blank');
+                }
+
+                if(document.getElementById('wa-btn-gas-burner')) {
+                    document.getElementById('wa-btn-gas-burner').addEventListener('click', function(e) {
+                        routeServiceToWhatsApp(e, '4 Plate Gas Burner');
+                    });
+                }
+
+                if(document.getElementById('wa-btn-spit-p1')) {
+                    document.getElementById('wa-btn-spit-p1').addEventListener('click', function(e) {
+                        routeServiceToWhatsApp(e, 'Charcoal Spit Braai Machine Hire (Package 1)');
+                    });
+                }
+
+                if(document.getElementById('wa-btn-spit-p2')) {
+                    document.getElementById('wa-btn-spit-p2').addEventListener('click', function(e) {
+                        routeServiceToWhatsApp(e, 'Charcoal Spit Braai Machine Hire (Package 2 with Delivery)');
+                    });
+                }
+
+                if(document.getElementById('wa-btn-catering')) {
+                    document.getElementById('wa-btn-catering').addEventListener('click', function(e) {
+                        routeServiceToWhatsApp(e, 'Off-site Catering Services');
+                    });
+                }
 
     </script>
     

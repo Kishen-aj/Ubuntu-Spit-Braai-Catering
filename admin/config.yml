@@ -2,7 +2,7 @@ backend:
   name: github
   repo: Kishen-aj/Ubuntu-Spit-Braai-Catering
   branch: main
-  base_url: https://ubuntu-auth.kjurakan.workers.dev/
+  base_url: https://ubuntu-auth.kjurakan.workers.dev
 
 media_folder: "Gallery Images"
 public_folder: "Gallery Images"
