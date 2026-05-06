@@ -1,13 +1,15 @@
 backend:
-  name: git-gateway
-  branch: main # Make sure your GitHub branch is actually named 'main' (or change to 'master')
+  name: github
+  repo: Kishen-aj/Ubuntu-Spit-Braai-Catering
+  branch: main
+  base_url: https://ubuntu-auth.kjurakan.workers.dev/
 
 media_folder: "Gallery Images"
 public_folder: "Gallery Images"
 
 collections:
   - name: "settings"
-    label: "Settings"
+    label: "Website Settings"
     files:
       - file: "gallery.json"
         label: "Gallery Photos"
@@ -17,3 +19,13 @@ collections:
             name: "photos"
             widget: "list"
             field: {label: "Photo", name: "image", widget: "image"}
+            
+      # --- NEW: Social Links Section ---
+      - file: "links.json"
+        label: "Social & Contact Links"
+        name: "links"
+        fields:
+          - {label: "WhatsApp Number (Format: 27812345678)", name: "whatsapp", widget: "string"}
+          - {label: "Instagram Link", name: "instagram", widget: "string"}
+          - {label: "Facebook Link", name: "facebook", widget: "string"}
+          - {label: "TikTok Link", name: "tiktok", widget: "string"}
