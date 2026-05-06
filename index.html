@@ -21,7 +21,7 @@
             <li><a href="#gallery">Gallery</a></li>
             <li><a href="#packages">Packages</a></li>
             <li><a href="#other-services">Other Services</a></li>
-            <li><a href="admin/index.html">Admin</a></li>
+            <li><a href="admin/index.html" target="_blank">Admin</a></li>
         </ul>
     </nav>
 
@@ -286,7 +286,7 @@
             });
         }
 
-        // --- 4. Dynamic Links & Secure Package Routing ---
+        // --- 4. Dynamic Links & Secure Routing ---
         fetch('links.json')
             .then(response => response.json())
             .then(data => {
@@ -300,66 +300,45 @@
                 if(document.getElementById('hero-fb-link')) document.getElementById('hero-fb-link').href = data.facebook;
                 if(document.getElementById('hero-tk-link')) document.getElementById('hero-tk-link').href = data.tiktok;
 
-                // --- 4b. Secure Package Routing (Using CMS Number) ---
+                // --- 4b. Secure Food Package Routing ---
                 function routeToWhatsApp(event, packageName, paxCount) {
                     event.preventDefault(); 
                     const rawMessage = `Hi, I'm enquiring about ${packageName} (${paxCount} PAX) from your website.`;
-                    const encodedMessage = encodeURIComponent(rawMessage);
-                    window.open(`https://wa.me/${data.whatsapp}?text=${encodedMessage}`, '_blank');
+                    window.open(`https://wa.me/${data.whatsapp}?text=${encodeURIComponent(rawMessage)}`, '_blank');
                 }
                 
                 if(document.getElementById('hero-wa-btn-p1')) {
-                    document.getElementById('hero-wa-btn-p1').addEventListener('click', function(e) {
-                        routeToWhatsApp(e, 'Package 1', '20');
-                    });
+                    document.getElementById('hero-wa-btn-p1').addEventListener('click', e => routeToWhatsApp(e, 'Package 1', '20'));
                 }
-                
                 if(document.getElementById('hero-wa-btn-p2')) {
-                    document.getElementById('hero-wa-btn-p2').addEventListener('click', function(e) {
-                        routeToWhatsApp(e, 'Package 2', '30');
-                    });
+                    document.getElementById('hero-wa-btn-p2').addEventListener('click', e => routeToWhatsApp(e, 'Package 2', '30'));
                 }
-                
                 if(document.getElementById('hero-wa-btn-p3')) {
-                    document.getElementById('hero-wa-btn-p3').addEventListener('click', function(e) {
-                        routeToWhatsApp(e, 'Package 3', '40');
-                    });
+                    document.getElementById('hero-wa-btn-p3').addEventListener('click', e => routeToWhatsApp(e, 'Package 3', '40'));
                 }
-            })
-            .catch(error => console.error("Error loading links:", error));
 
-            // --- 4c. Secure General Services Routing ---
+                // --- 4c. Secure Other Services Routing ---
                 function routeServiceToWhatsApp(event, serviceName) {
                     event.preventDefault(); 
                     const rawMessage = `Hi, I'm enquiring about the ${serviceName} from your website.`;
-                    const encodedMessage = encodeURIComponent(rawMessage);
-                    window.open(`https://wa.me/${data.whatsapp}?text=${encodedMessage}`, '_blank');
+                    window.open(`https://wa.me/${data.whatsapp}?text=${encodeURIComponent(rawMessage)}`, '_blank');
                 }
 
                 if(document.getElementById('wa-btn-gas-burner')) {
-                    document.getElementById('wa-btn-gas-burner').addEventListener('click', function(e) {
-                        routeServiceToWhatsApp(e, '4 Plate Gas Burner');
-                    });
+                    document.getElementById('wa-btn-gas-burner').addEventListener('click', e => routeServiceToWhatsApp(e, '4 Plate Gas Burner'));
                 }
-
                 if(document.getElementById('wa-btn-spit-p1')) {
-                    document.getElementById('wa-btn-spit-p1').addEventListener('click', function(e) {
-                        routeServiceToWhatsApp(e, 'Charcoal Spit Braai Machine Hire (Package 1)');
-                    });
+                    document.getElementById('wa-btn-spit-p1').addEventListener('click', e => routeServiceToWhatsApp(e, 'Charcoal Spit Braai Machine Hire (Package 1)'));
                 }
-
                 if(document.getElementById('wa-btn-spit-p2')) {
-                    document.getElementById('wa-btn-spit-p2').addEventListener('click', function(e) {
-                        routeServiceToWhatsApp(e, 'Charcoal Spit Braai Machine Hire (Package 2 with Delivery)');
-                    });
+                    document.getElementById('wa-btn-spit-p2').addEventListener('click', e => routeServiceToWhatsApp(e, 'Charcoal Spit Braai Machine Hire (Package 2 with Delivery)'));
                 }
-
                 if(document.getElementById('wa-btn-catering')) {
-                    document.getElementById('wa-btn-catering').addEventListener('click', function(e) {
-                        routeServiceToWhatsApp(e, 'Off-site Catering Services');
-                    });
+                    document.getElementById('wa-btn-catering').addEventListener('click', e => routeServiceToWhatsApp(e, 'Off-site Catering Services'));
                 }
-
+            })
+            .catch(error => console.error("Error loading links:", error));
+            
     </script>
     
 </body>
