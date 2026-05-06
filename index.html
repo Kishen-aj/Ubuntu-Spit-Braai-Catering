@@ -7,7 +7,6 @@
     <link rel="preload" as="image" href="Gallery Images/Ubuntu_bg.jpg">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
 
@@ -275,22 +274,11 @@
             })
             .catch(error => console.error("Error loading gallery:", error));
 
-        // --- 3. CMS Login Redirect ---
-        if (window.netlifyIdentity) {
-            window.netlifyIdentity.on("init", user => {
-                if (!user) {
-                    window.netlifyIdentity.on("login", () => {
-                        document.location.href = "/admin/";
-                    });
-                }
-            });
-        }
-
-        // --- 4. Dynamic Links & Secure Routing ---
+        // --- 3. Dynamic Links & Secure Routing ---
         fetch('links.json')
             .then(response => response.json())
             .then(data => {
-                // --- 4a. Standard Buttons ---
+                // --- 3a. Standard Buttons ---
                 const waMessage = "?text=Hello,%20I%20am%20reaching%20out%20from%20your%20website%20to%20inquire%20about%20your%20catering%20packages%20and%20availability.";
                 const waFullLink = "https://wa.me/" + data.whatsapp + waMessage;
 
@@ -300,7 +288,7 @@
                 if(document.getElementById('hero-fb-link')) document.getElementById('hero-fb-link').href = data.facebook;
                 if(document.getElementById('hero-tk-link')) document.getElementById('hero-tk-link').href = data.tiktok;
 
-                // --- 4b. Secure Food Package Routing ---
+                // --- 3b. Secure Food Package Routing ---
                 function routeToWhatsApp(event, packageName, paxCount) {
                     event.preventDefault(); 
                     const rawMessage = `Hi, I'm enquiring about ${packageName} (${paxCount} PAX) from your website.`;
@@ -317,7 +305,7 @@
                     document.getElementById('hero-wa-btn-p3').addEventListener('click', e => routeToWhatsApp(e, 'Package 3', '40'));
                 }
 
-                // --- 4c. Secure Other Services Routing ---
+                // --- 3c. Secure Other Services Routing ---
                 function routeServiceToWhatsApp(event, serviceName) {
                     event.preventDefault(); 
                     const rawMessage = `Hi, I'm enquiring about the ${serviceName} from your website.`;
@@ -338,7 +326,7 @@
                 }
             })
             .catch(error => console.error("Error loading links:", error));
-            
+
     </script>
     
 </body>
