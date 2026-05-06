@@ -3,9 +3,37 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ubuntu Catering - Content Manager</title>
+    <title>Ubuntu Admin Dashboard</title>
   </head>
   <body>
+    <script>
+      window.addEventListener("message", function(event) {
+        // Only listen to our Cloudflare Worker
+        if (event.origin === "https://ubuntu-auth.kjurakan.workers.dev") {
+          console.log("🚨 X-RAY: TOKEN RECEIVED FROM WORKER 🚨");
+          console.log(event.data);
+          
+          // If Decap is ignoring it, we manually save the token and refresh!
+          if (typeof event.data === 'string' && event.data.includes('authorization:github:success')) {
+            const tokenStr = event.data.split('success:')[1];
+            try {
+              const tokenData = JSON.parse(tokenStr);
+              // Force Decap CMS to accept the token
+              const userObj = {
+                token: tokenData.token,
+                backendName: "github"
+              };
+              localStorage.setItem("netlify-cms-user", JSON.stringify(userObj));
+              console.log("Token forcibly saved! Reloading...");
+              window.location.reload();
+            } catch (e) {
+              console.error("Failed to parse token:", e);
+            }
+          }
+        }
+      });
+    </script>
+
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   </body>
 </html>
