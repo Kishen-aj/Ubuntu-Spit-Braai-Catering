@@ -3,6 +3,7 @@ backend:
   repo: Kishen-aj/Ubuntu-Spit-Braai-Catering
   branch: main
   base_url: https://ubuntu-auth.kjurakan.workers.dev
+  site_domain: ubuntucatering.co.za
 
 media_folder: "Gallery Images"
 public_folder: "Gallery Images"
